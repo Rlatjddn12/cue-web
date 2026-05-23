@@ -39,28 +39,6 @@
   </script>
 </head>
 <body>
-  <script>
-  // Handle Supabase auth callback
-  const hash = window.location.hash;
-  const search = window.location.search;
-
-  if (hash && hash.includes('access_token')) {
-    // Show loading state
-    document.body.style.background = '#111010';
-    document.body.style.display = 'flex';
-    document.body.style.alignItems = 'center';
-    document.body.style.justifyContent = 'center';
-    document.body.style.height = '100vh';
-    document.body.style.margin = '0';
-    document.body.innerHTML = '<p style="color:#F7F5F0;font-family:Georgia,serif;font-size:24px;">cue.</p>';
-
-    // Redirect to app
-    const params = hash.substring(1);
-    setTimeout(() => {
-      window.location.href = 'cue://auth/callback#' + params;
-    }, 500);
-  }
-  </script>
   <div class="logo">cue.</div>
   <div class="tagline">Your music. Your moments. Curated.</div>
   <div class="desc">음악으로 연결되는 소셜 아카이브. 지금 듣고 있는 곡을 공유하고, 취향이 맞는 사람들을 발견하세요.</div>
