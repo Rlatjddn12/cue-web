@@ -29,6 +29,14 @@
     .privacy-link { margin-top: 40px; font-size: 12px; color: #444; text-decoration: none; font-family: sans-serif; }
     .privacy-link:hover { color: #888; }
   </style>
+  <script>
+    // If Supabase redirected here with auth tokens, forward them into the app
+    var hash = window.location.hash;
+    if (hash && hash.includes('access_token')) {
+      var params = hash.substring(1); // strip leading #
+      window.location.href = 'cue://auth/callback?' + params;
+    }
+  </script>
 </head>
 <body>
   <div class="logo">cue.</div>
