@@ -1,45 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>cue. — 인증 중...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cue.</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #111010;
+      color: #F7F5F0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      font-family: Georgia, serif;
-      color: #F7F5F0;
+      min-height: 100vh;
+      padding: 24px;
     }
-    .logo { font-size: 36px; margin-bottom: 24px; }
-    .msg { font-size: 14px; color: #888; font-family: sans-serif; }
+    .container {
+      text-align: center;
+      max-width: 400px;
+    }
+    .logo {
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: -1px;
+      margin-bottom: 32px;
+      font-family: Georgia, serif;
+    }
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-block;
+      background: #F7F5F0;
+      color: #111010;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .btn-secondary {
+      display: block;
+      color: #888;
+      font-size: 13px;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+    .error { color: #FF4444; }
   </style>
 </head>
 <body>
-  <div class="logo">cue.</div>
-  <div class="msg">인증 중입니다...</div>
+  <div class="container">
+    <div class="logo">cue.</div>
+    <div id="content">
+      <p style="color:#888">처리 중...</p>
+    </div>
+  </div>
+
   <script>
     const hash = window.location.hash.substring(1);
     const params = new URLSearchParams(hash);
-    const access_token = params.get('access_token');
-    const refresh_token = params.get('refresh_token');
+    const query = new URLSearchParams(window.location.search);
 
-    if (access_token) {
-      // Redirect to app with tokens
-      const appUrl = 'cue://auth/callback#' + hash;
-      window.location.href = appUrl;
+    const type = params.get('type') || query.get('type');
+    const accessToken = params.get('access_token');
+    const error = params.get('error_description') || query.get('error_description');
+    const content = document.getElementById('content');
 
-      // Fallback message after 2 seconds
+    if (error) {
+      content.innerHTML = `
+        <h1 class="error">오류 발생</h1>
+        <p>${error}</p>
+        <a href="/" class="btn-secondary">홈으로</a>
+      `;
+    } else if (accessToken || type === 'recovery') {
+      const deepLink = 'cue://' + window.location.pathname + window.location.search + window.location.hash;
+
+      content.innerHTML = `
+        <svg class="icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" stroke="#F7F5F0" stroke-width="2"/>
+          <path d="M20 32l9 9 15-15" stroke="#F7F5F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h1>인증 완료</h1>
+        <p>이메일 인증이 완료되었습니다.<br>앱으로 돌아가서 cue.를 즐겨보세요.</p>
+        <a href="${deepLink}" class="btn">앱으로 돌아가기</a>
+        <a href="https://play.google.com/store/apps/details?id=com.cueapp.music" class="btn-secondary">
+          앱이 없으신가요? 다운로드
+        </a>
+      `;
+
       setTimeout(() => {
-        document.querySelector('.msg').textContent =
-          '앱이 열리지 않으면 cue. 앱을 직접 열어주세요.';
+        window.location.href = deepLink;
       }, 2000);
+
     } else {
-      document.querySelector('.msg').textContent = '인증 정보가 없습니다. 다시 시도해주세요.';
+      content.innerHTML = `
+        <svg class="icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" stroke="#F7F5F0" stroke-width="2"/>
+          <path d="M20 32l9 9 15-15" stroke="#F7F5F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h1>확인 완료</h1>
+        <p>앱으로 돌아가서 계속하세요.</p>
+        <a href="cue://" class="btn">앱으로 돌아가기</a>
+        <a href="https://play.google.com/store/apps/details?id=com.cueapp.music" class="btn-secondary">
+          앱 다운로드
+        </a>
+      `;
     }
   </script>
 </body>
