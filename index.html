@@ -26,9 +26,10 @@
 
     /* Hero */
     .hero {
-      padding: 120px 24px 80px;
+      padding: 140px 24px 120px;
       max-width: 960px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .logo {
@@ -59,6 +60,7 @@
     .buttons {
       display: flex;
       align-items: flex-start;
+      justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
     }
@@ -105,7 +107,7 @@
 
     /* Features */
     .features {
-      padding: 80px 24px;
+      padding: 120px 24px;
       max-width: 960px;
       margin: 0 auto;
     }
@@ -113,6 +115,7 @@
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      align-items: stretch;
       gap: 16px;
     }
 
@@ -148,7 +151,7 @@
 
     /* Philosophy */
     .philosophy {
-      padding: 80px 24px;
+      padding: 120px 24px;
       max-width: 960px;
       margin: 0 auto;
       text-align: center;
@@ -157,9 +160,9 @@
     .philosophy .section-label {
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 2px;
       color: #888;
-      margin-bottom: 24px;
+      margin-bottom: 36px;
     }
 
     .philosophy-quote {
@@ -179,15 +182,17 @@
 
     /* Footer */
     footer {
-      border-top: 1px solid #2A2A25;
+      border-top: 1px solid #222;
       padding: 40px 24px;
       max-width: 960px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 8px;
       align-items: center;
       margin-bottom: 16px;
@@ -216,7 +221,7 @@
     /* Mobile */
     @media (max-width: 640px) {
       .hero {
-        padding: 80px 24px 60px;
+        padding: 100px 24px 80px;
       }
 
       .logo {
