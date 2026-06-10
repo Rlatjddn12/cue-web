@@ -246,20 +246,47 @@
 </head>
 <body>
 
+  <!-- Language toggle -->
+  <div style="position: fixed; top: 20px; right: 24px; z-index: 100;">
+    <button onclick="toggleLang()" id="lang-btn" style="
+      background: transparent;
+      border: 1px solid #444;
+      color: #888;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    ">EN</button>
+  </div>
+
   <!-- Hero -->
   <section class="hero">
     <div class="logo">cue.</div>
-    <div class="tagline-ko">사람이 사람한테 음악을 건네는 공간.</div>
-    <div class="tagline-en">Share music you love. Discover what fits your taste.</div>
+    <div class="tagline-ko"
+         data-ko="사람이 사람한테 음악을 건네는 공간."
+         data-en="A space where people pass music to each other.">
+      사람이 사람한테 음악을 건네는 공간.
+    </div>
+    <div class="tagline-en"
+         data-ko="좋아하는 음악을 공유하고, 취향이 맞는 곡을 발견하세요."
+         data-en="Share music you love. Discover what fits your taste.">
+      좋아하는 음악을 공유하고, 취향이 맞는 곡을 발견하세요.
+    </div>
     <div class="buttons">
       <div class="btn-wrap">
-        <a class="btn" href="https://play.google.com/store/apps/details?id=com.cueapp.music" target="_blank" rel="noopener">
-          Google Play
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.cueapp.music" target="_blank" rel="noopener"
+           data-ko="Google Play 다운로드"
+           data-en="Get it on Google Play">
+          Google Play 다운로드
         </a>
       </div>
       <div class="btn-wrap">
-        <span class="btn btn-disabled">App Store</span>
-        <span class="btn-label">Coming soon</span>
+        <span class="btn btn-disabled"
+              data-ko="App Store — 출시 예정"
+              data-en="App Store — Coming Soon">
+          App Store — 출시 예정
+        </span>
       </div>
     </div>
   </section>
@@ -269,40 +296,104 @@
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-label">DROP</div>
-        <div class="feature-title">24시간의 음악 순간</div>
-        <div class="feature-desc">지금 이 곡이 왜 좋은지, 오늘 이 감정을 나누세요.</div>
+        <div class="feature-title"
+             data-ko="24시간의 음악 순간"
+             data-en="Music moments, 24 hours">
+          24시간의 음악 순간
+        </div>
+        <div class="feature-desc"
+             data-ko="지금 이 곡이 왜 좋은지, 오늘 이 감정을 나누세요."
+             data-en="Share why this song hits different right now.">
+          지금 이 곡이 왜 좋은지, 오늘 이 감정을 나누세요.
+        </div>
       </div>
       <div class="feature-card">
         <div class="feature-label">FEED</div>
-        <div class="feature-title">취향으로 연결되는 피드</div>
-        <div class="feature-desc">팔로우한 사람들의 음악, 취향이 비슷한 유저의 추천.</div>
+        <div class="feature-title"
+             data-ko="취향으로 연결되는 피드"
+             data-en="A feed built around taste">
+          취향으로 연결되는 피드
+        </div>
+        <div class="feature-desc"
+             data-ko="팔로우한 사람들의 음악, 취향이 비슷한 유저의 추천."
+             data-en="Music from people you follow, picks from people like you.">
+          팔로우한 사람들의 음악, 취향이 비슷한 유저의 추천.
+        </div>
       </div>
       <div class="feature-card">
         <div class="feature-label">TRENDING</div>
-        <div class="feature-title">지금 뜨는 음악</div>
-        <div class="feature-desc">Billboard Hot 100과 Deezer 글로벌 차트를 한눈에.</div>
+        <div class="feature-title"
+             data-ko="지금 뜨는 음악"
+             data-en="What's trending now">
+          지금 뜨는 음악
+        </div>
+        <div class="feature-desc"
+             data-ko="Billboard Hot 100과 Deezer 글로벌 차트를 한눈에."
+             data-en="Billboard Hot 100 and Deezer Global Charts in one place.">
+          Billboard Hot 100과 Deezer 글로벌 차트를 한눈에.
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Philosophy -->
   <section class="philosophy">
-    <div class="section-label">PHILOSOPHY</div>
-    <div class="philosophy-quote">100만 명에게 평범한 경험 말고.</div>
-    <div class="philosophy-subquote">100명에게 Oasis를 처음 들었을 때 그 느낌.</div>
+    <div class="section-label"
+         data-ko="철학"
+         data-en="PHILOSOPHY">
+      철학
+    </div>
+    <div class="philosophy-quote"
+         data-ko="100만 명에게 평범한 경험 말고."
+         data-en="Not a mediocre experience for a million people.">
+      100만 명에게 평범한 경험 말고.
+    </div>
+    <div class="philosophy-subquote"
+         data-ko="100명에게 Oasis를 처음 들었을 때 그 느낌."
+         data-en="The feeling of hearing Oasis for the first time, for 100 people.">
+      100명에게 Oasis를 처음 들었을 때 그 느낌.
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <div class="footer-links">
-      <a href="./privacy.html">개인정보 처리방침</a>
+      <a href="./privacy.html"
+         data-ko="개인정보 처리방침"
+         data-en="Privacy Policy">
+        개인정보 처리방침
+      </a>
       <span class="sep">|</span>
-      <a href="./terms.html">이용약관</a>
+      <a href="./terms.html"
+         data-ko="이용약관"
+         data-en="Terms of Service">
+        이용약관
+      </a>
       <span class="sep">|</span>
       <a href="mailto:cuemusic.support@gmail.com">cuemusic.support@gmail.com</a>
     </div>
     <div class="footer-copy">© 2026 cue. All rights reserved.</div>
   </footer>
+
+  <script>
+    const userLang = navigator.language.startsWith('ko') ? 'ko' : 'en';
+    let currentLang = userLang;
+
+    function applyLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-ko]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+      document.getElementById('lang-btn').textContent = lang === 'ko' ? 'EN' : 'KO';
+      document.documentElement.lang = lang;
+    }
+
+    function toggleLang() {
+      applyLang(currentLang === 'ko' ? 'en' : 'ko');
+    }
+
+    applyLang(currentLang);
+  </script>
 
 </body>
 </html>
