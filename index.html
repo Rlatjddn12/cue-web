@@ -18,12 +18,6 @@
       min-height: 100vh;
     }
 
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
     /* Hero */
     .hero {
       padding: 140px 24px 120px;
@@ -123,7 +117,9 @@
       background: #1C1B17;
       border: 1px solid #2A2A25;
       border-radius: 16px;
-      padding: 24px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
     }
 
     .feature-label {
@@ -147,35 +143,73 @@
       font-size: 14px;
       color: #888;
       line-height: 1.7;
+      margin-bottom: 20px;
     }
 
-    /* Philosophy */
-    .philosophy {
-      padding: 120px 24px;
+    .feature-subs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .feature-subs li {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .feature-subs li::before {
+      content: '·';
+      margin-right: 8px;
+      color: #555;
+    }
+
+    /* How it works */
+    .how {
+      padding: 0 24px 120px;
       max-width: 960px;
       margin: 0 auto;
-      text-align: center;
     }
 
-    .philosophy .section-label {
+    .section-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 2px;
       color: #888;
-      margin-bottom: 36px;
+      margin-bottom: 48px;
     }
 
-    .philosophy-quote {
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .step {
+      border-top: 1px solid #222;
+      padding-top: 24px;
+    }
+
+    .step-number {
       font-family: Georgia, serif;
-      font-size: 28px;
-      font-weight: 400;
-      color: #F7F5F0;
-      margin-bottom: 16px;
-      line-height: 1.4;
+      font-size: 48px;
+      font-weight: 300;
+      color: #333;
+      line-height: 1;
+      margin-bottom: 20px;
     }
 
-    .philosophy-subquote {
+    .step-title {
       font-size: 16px;
+      font-weight: 600;
+      color: #F7F5F0;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 13px;
       color: #888;
       line-height: 1.7;
     }
@@ -236,8 +270,9 @@
         grid-template-columns: 1fr;
       }
 
-      .philosophy-quote {
-        font-size: 22px;
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
       }
     }
   </style>
@@ -299,6 +334,7 @@
   <!-- Features -->
   <section class="features">
     <div class="features-grid">
+
       <div class="feature-card">
         <div class="feature-label">DROP</div>
         <div class="feature-title"
@@ -307,11 +343,20 @@
           24시간의 음악 순간
         </div>
         <div class="feature-desc"
-             data-ko="지금 이 곡이 왜 좋은지, 오늘 이 감정을 나누세요."
-             data-en="Share why this song hits different right now.">
-          지금 이 곡이 왜 좋은지, 오늘 이 감정을 나누세요.
+             data-ko="지금 이 곡이 왜 좋은지, 오늘의 감정을 음악으로 남기세요."
+             data-en="Capture why this song hits different right now.">
+          지금 이 곡이 왜 좋은지, 오늘의 감정을 음악으로 남기세요.
         </div>
+        <ul class="feature-subs">
+          <li data-ko="캔버스 에디터로 직접 꾸미기"
+              data-en="Customize with canvas editor">캔버스 에디터로 직접 꾸미기</li>
+          <li data-ko="24시간 후 자동 삭제"
+              data-en="Auto-deleted after 24 hours">24시간 후 자동 삭제</li>
+          <li data-ko="공개 또는 맞팔 공개 설정"
+              data-en="Share publicly or with mutuals only">공개 또는 맞팔 공개 설정</li>
+        </ul>
       </div>
+
       <div class="feature-card">
         <div class="feature-label">FEED</div>
         <div class="feature-title"
@@ -320,11 +365,20 @@
           취향으로 연결되는 피드
         </div>
         <div class="feature-desc"
-             data-ko="팔로우한 사람들의 음악, 취향이 비슷한 유저의 추천."
-             data-en="Music from people you follow, picks from people like you.">
-          팔로우한 사람들의 음악, 취향이 비슷한 유저의 추천.
+             data-ko="알고리즘이 아닌 사람이 건네는 음악."
+             data-en="Music passed from person to person, not algorithms.">
+          알고리즘이 아닌 사람이 건네는 음악.
         </div>
+        <ul class="feature-subs">
+          <li data-ko="팔로우한 사람들의 최신 음악"
+              data-en="Latest music from people you follow">팔로우한 사람들의 최신 음악</li>
+          <li data-ko="취향 기반 맞춤 추천"
+              data-en="Personalized taste-based recommendations">취향 기반 맞춤 추천</li>
+          <li data-ko="30초 프리뷰 즉시 재생"
+              data-en="Instant 30-second preview playback">30초 프리뷰 즉시 재생</li>
+        </ul>
       </div>
+
       <div class="feature-card">
         <div class="feature-label">TRENDING</div>
         <div class="feature-title"
@@ -333,30 +387,74 @@
           지금 뜨는 음악
         </div>
         <div class="feature-desc"
-             data-ko="Billboard Hot 100과 Deezer 글로벌 차트를 한눈에."
-             data-en="Billboard Hot 100 and Deezer Global Charts in one place.">
-          Billboard Hot 100과 Deezer 글로벌 차트를 한눈에.
+             data-ko="글로벌 차트를 한눈에."
+             data-en="Global charts at a glance.">
+          글로벌 차트를 한눈에.
         </div>
+        <ul class="feature-subs">
+          <li data-ko="Billboard Hot 100"
+              data-en="Billboard Hot 100">Billboard Hot 100</li>
+          <li data-ko="Deezer 글로벌 차트"
+              data-en="Deezer Global Chart">Deezer 글로벌 차트</li>
+          <li data-ko="장르별 필터"
+              data-en="Filter by genre">장르별 필터</li>
+        </ul>
       </div>
+
     </div>
   </section>
 
-  <!-- Philosophy -->
-  <section class="philosophy">
+  <!-- How it works -->
+  <section class="how">
     <div class="section-label"
-         data-ko="철학"
-         data-en="PHILOSOPHY">
-      철학
+         data-ko="사용 방법"
+         data-en="HOW IT WORKS">
+      사용 방법
     </div>
-    <div class="philosophy-quote"
-         data-ko="100만 명에게 평범한 경험 말고."
-         data-en="Not a mediocre experience for a million people.">
-      100만 명에게 평범한 경험 말고.
-    </div>
-    <div class="philosophy-subquote"
-         data-ko="100명에게 Oasis를 처음 들었을 때 그 느낌."
-         data-en="The feeling of hearing Oasis for the first time, for 100 people.">
-      100명에게 Oasis를 처음 들었을 때 그 느낌.
+    <div class="steps-grid">
+
+      <div class="step">
+        <div class="step-number">01</div>
+        <div class="step-title"
+             data-ko="계정 만들기"
+             data-en="Create account">
+          계정 만들기
+        </div>
+        <div class="step-desc"
+             data-ko="이메일로 가입하고 음악 취향을 설정하세요."
+             data-en="Sign up with email and set your music taste.">
+          이메일로 가입하고 음악 취향을 설정하세요.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">02</div>
+        <div class="step-title"
+             data-ko="음악 공유하기"
+             data-en="Share music">
+          음악 공유하기
+        </div>
+        <div class="step-desc"
+             data-ko="+ 버튼으로 곡, Drop, 플레이리스트를 공유하세요."
+             data-en="Share tracks, Drops, and playlists with the + button.">
+          + 버튼으로 곡, Drop, 플레이리스트를 공유하세요.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">03</div>
+        <div class="step-title"
+             data-ko="취향 발견하기"
+             data-en="Discover taste">
+          취향 발견하기
+        </div>
+        <div class="step-desc"
+             data-ko="취향이 비슷한 사람들의 음악을 발견하세요."
+             data-en="Discover music from people who share your taste.">
+          취향이 비슷한 사람들의 음악을 발견하세요.
+        </div>
+      </div>
+
     </div>
   </section>
 
