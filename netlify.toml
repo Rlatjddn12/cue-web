@@ -7,3 +7,8 @@
   from = "/profile/*"
   to = "/profile.html"
   status = 200
+
+[[redirects]]
+  from = "/track/*"
+  to = "/track.html"
+  status = 200
