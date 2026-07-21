@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cue.</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #111010;
+      color: #F7F5F0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container {
+      text-align: center;
+      max-width: 400px;
+    }
+    .logo {
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: -1px;
+      margin-bottom: 32px;
+      font-family: Georgia, serif;
+    }
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-block;
+      background: #F7F5F0;
+      color: #111010;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .btn-secondary {
+      display: block;
+      color: #888;
+      font-size: 13px;
+      text-decoration: none;
+      margin-top: 8px;
+    }
+    .error { color: #FF4444; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">cue.</div>
+    <div id="content"></div>
+  </div>
+
+  <script>
+    const lang = navigator.language.startsWith('ko') ? 'ko' : 'en';
+    document.documentElement.lang = lang;
+
+    const copy = {
+      opening:    { ko: '앱으로 여는 중...', en: 'Opening app...' },
+      title:      { ko: '공유된 곡',        en: 'Shared track' },
+      desc:       { ko: 'cue.에서 이 게시물을 확인해보세요.', en: 'Check out this post on cue.' },
+      openApp:    { ko: '앱으로 열기',       en: 'Open in cue.' },
+      noApp:      { ko: '앱이 없으신가요? 다운로드', en: "Don't have the app? Download" },
+      notFound:   { ko: '잘못된 링크입니다', en: 'Invalid link' },
+      home:       { ko: '홈으로',           en: 'Go home' },
+    };
+
+    function t(key) { return copy[key][lang]; }
+
+    const content = document.getElementById('content');
+
+    // Path is /post/{postId}
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const postId = parts.length >= 2 ? decodeURIComponent(parts[1]) : null;
+
+    const noteIcon = `
+      <svg class="icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" stroke="#F7F5F0" stroke-width="2"/>
+        <path d="M26 40a5 5 0 1 1 0-10 5 5 0 0 1 0 10Z" stroke="#F7F5F0" stroke-width="2"/>
+        <path d="M31 35V20l12-3v15" stroke="#F7F5F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+
+    if (!postId) {
+      content.innerHTML = `
+        <h1 class="error">${t('notFound')}</h1>
+        <a href="/" class="btn-secondary">${t('home')}</a>
+      `;
+    } else {
+      const deepLink = `cue://post/${encodeURIComponent(postId)}`;
+      content.innerHTML = `
+        ${noteIcon}
+        <h1>${t('title')}</h1>
+        <p>${t('desc')}</p>
+        <a href="${deepLink}" class="btn">${t('openApp')}</a>
+        <a href="https://play.google.com/store/apps/details?id=com.cueapp.music" class="btn-secondary">
+          ${t('noApp')}
+        </a>
+      `;
+      setTimeout(() => { window.location.href = deepLink; }, 800);
+    }
+  </script>
+</body>
+</html>
