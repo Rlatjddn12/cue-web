@@ -6,6 +6,15 @@
   <title>cue. — 취향 기반 음악 공유 SNS</title>
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
+  <meta property="og:title" content="cue. — 스트리밍 앱이 달라도, 취향은 같으니까" />
+  <meta property="og:description" content="취향 기반 음악 공유 SNS. 좋아하는 곡으로 취향 맞는 사람을 만나보세요." />
+  <meta property="og:image" content="https://cue-music.netlify.app/og-image.png" />
+  <meta property="og:url" content="https://cue-music.netlify.app" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="cue. — 스트리밍 앱이 달라도, 취향은 같으니까" />
+  <meta name="twitter:description" content="취향 기반 음악 공유 SNS. 좋아하는 곡으로 취향 맞는 사람을 만나보세요." />
+  <meta name="twitter:image" content="https://cue-music.netlify.app/og-image.png" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -89,16 +98,52 @@
       background: rgba(247, 245, 240, 0.06);
     }
 
-    .btn-disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
     .btn-label {
       font-size: 11px;
       color: #888;
       letter-spacing: 0.02em;
+    }
+
+    /* Waitlist form */
+    .waitlist-form {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .waitlist-input {
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid #444;
+      background: transparent;
+      color: #F7F5F0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      width: 200px;
+      outline: none;
+    }
+
+    .waitlist-input:focus {
+      border-color: #F7F5F0;
+    }
+
+    .waitlist-input::placeholder {
+      color: #666;
+    }
+
+    .waitlist-submit {
+      background: #F7F5F0;
+      color: #111010;
+      border-color: #F7F5F0;
+    }
+
+    .waitlist-submit:hover {
+      background: #E5E2DA;
+    }
+
+    .waitlist-message {
+      font-size: 13px;
+      color: #888;
     }
 
     /* Features */
@@ -306,14 +351,14 @@
   <section class="hero">
     <div class="logo">cue.</div>
     <div class="tagline-ko"
-         data-ko="취향 기반 음악 공유 SNS"
-         data-en="A taste-based music sharing platform">
-      취향 기반 음악 공유 SNS
+         data-ko="스트리밍 앱이 달라도, 취향은 같으니까"
+         data-en="Different apps, same taste">
+      스트리밍 앱이 달라도, 취향은 같으니까
     </div>
     <div class="tagline-en"
-         data-ko="좋아하는 음악을 공유하고, 취향이 맞는 곡을 발견하세요."
-         data-en="Share music you love. Discover what fits your taste.">
-      좋아하는 음악을 공유하고, 취향이 맞는 곡을 발견하세요.
+         data-ko="좋아하는 곡으로 취향 맞는 사람을 만나보세요."
+         data-en="Find people who share your taste, one song at a time.">
+      좋아하는 곡으로 취향 맞는 사람을 만나보세요.
     </div>
     <div class="buttons">
       <div class="btn-wrap">
@@ -324,11 +369,22 @@
         </a>
       </div>
       <div class="btn-wrap">
-        <span class="btn btn-disabled"
-              data-ko="App Store — 출시 예정"
-              data-en="App Store — Coming Soon">
+        <button type="button" class="btn" id="waitlist-toggle" onclick="showWaitlistForm()"
+                data-ko="App Store — 출시 예정"
+                data-en="App Store — Coming Soon">
           App Store — 출시 예정
-        </span>
+        </button>
+        <form id="waitlist-form" class="waitlist-form" style="display: none;" onsubmit="return submitWaitlist(event)">
+          <input type="email" id="waitlist-email" class="waitlist-input" required
+                 data-ko-placeholder="출시되면 알려드릴게요"
+                 data-en-placeholder="We'll notify you at launch"
+                 placeholder="출시되면 알려드릴게요" />
+          <button type="submit" class="btn waitlist-submit"
+                  data-ko="알림 신청" data-en="Notify me">
+            알림 신청
+          </button>
+        </form>
+        <div id="waitlist-message" class="waitlist-message" style="display: none;"></div>
       </div>
     </div>
   </section>
@@ -480,21 +536,77 @@
     <div class="footer-copy">© 2026 cue. All rights reserved.</div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
+    const SUPABASE_URL = 'https://doiubtezpmtgzoauefjs.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvaXVidGV6cG10Z3pvYXVlZmpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MjQzMjMsImV4cCI6MjA5NDUwMDMyM30.O6GbKX1mcZYhOfmgT4UrI2tfAPC70iWsx7WNlo8FQ1c';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     const userLang = navigator.language.startsWith('ko') ? 'ko' : 'en';
     let currentLang = userLang;
+    let waitlistState = null; // null | 'success' | 'error'
+
+    const waitlistMessages = {
+      success: { ko: '신청 완료', en: "You're on the list" },
+      error: { ko: '올바른 이메일을 입력해주세요', en: 'Please enter a valid email' },
+    };
 
     function applyLang(lang) {
       currentLang = lang;
       document.querySelectorAll('[data-ko]').forEach(el => {
         el.textContent = el.getAttribute('data-' + lang);
       });
+      document.querySelectorAll('[data-ko-placeholder]').forEach(el => {
+        el.placeholder = el.getAttribute('data-' + lang + '-placeholder');
+      });
       document.getElementById('lang-btn').textContent = lang === 'ko' ? 'EN' : 'KO';
       document.documentElement.lang = lang;
+
+      if (waitlistState) {
+        document.getElementById('waitlist-message').textContent = waitlistMessages[waitlistState][lang];
+      }
     }
 
     function toggleLang() {
       applyLang(currentLang === 'ko' ? 'en' : 'ko');
+    }
+
+    function showWaitlistForm() {
+      document.getElementById('waitlist-toggle').style.display = 'none';
+      document.getElementById('waitlist-form').style.display = 'flex';
+      document.getElementById('waitlist-email').focus();
+    }
+
+    function showWaitlistMessage(state) {
+      waitlistState = state;
+      const messageEl = document.getElementById('waitlist-message');
+      messageEl.textContent = waitlistMessages[state][currentLang];
+      messageEl.style.display = 'block';
+    }
+
+    async function submitWaitlist(event) {
+      event.preventDefault();
+      const emailInput = document.getElementById('waitlist-email');
+      const email = emailInput.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+        showWaitlistMessage('error');
+        return false;
+      }
+
+      document.getElementById('waitlist-form').style.display = 'none';
+
+      try {
+        await supabaseClient
+          .from('email_waitlist')
+          .insert({ email: email, platform: 'ios', source: 'landing_page' });
+      } catch (e) {
+        // Ignored: always show success to avoid email enumeration.
+      }
+
+      showWaitlistMessage('success');
+      return false;
     }
 
     applyLang(currentLang);
