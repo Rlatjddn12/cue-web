@@ -7,6 +7,7 @@
   <meta name="description" content="취향 기반 음악 공유 SNS. 좋아하는 곡으로 취향 맞는 사람을 만나보세요." />
   <meta name="keywords" content="음악 공유, 음악 SNS, 취향 매칭, 플레이리스트 공유, cue" />
   <link rel="canonical" href="https://cue-music.netlify.app" />
+  <link rel="preload" as="image" href="/assets/app-icon.png">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <meta property="og:title" content="cue. — 스트리밍 앱이 달라도, 취향은 같으니까" />
@@ -53,6 +54,21 @@
       max-width: 960px;
       margin: 0 auto;
       text-align: center;
+    }
+
+    .app-icon {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 28px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.35);
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .logo {
@@ -241,6 +257,38 @@
       color: #555;
     }
 
+    /* Phone mockup placeholder — swap for real screenshot, see HTML comment */
+    .phone-mockup {
+      margin-top: 24px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 120px;
+      aspect-ratio: 9 / 18;
+      border: 1.5px solid #33322C;
+      border-radius: 20px;
+      background: #0D0C0A;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .phone-mockup-notch {
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background: #33322C;
+    }
+
+    .phone-mockup-label {
+      font-size: 10px;
+      color: #555;
+      text-align: center;
+      line-height: 1.5;
+    }
+
     /* How it works */
     .how {
       padding: 0 24px 120px;
@@ -367,6 +415,12 @@
         padding: 100px 24px 80px;
       }
 
+      .app-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 18px;
+      }
+
       .logo {
         font-size: 48px;
       }
@@ -411,6 +465,9 @@
 
   <!-- Hero -->
   <section class="hero">
+    <div class="app-icon">
+      <img src="/assets/app-icon.png" alt="cue. app icon" width="96" height="96" fetchpriority="high" />
+    </div>
     <div class="logo">cue.</div>
     <div class="tagline-ko"
          data-ko="스트리밍 앱이 달라도, 취향은 같으니까"
@@ -513,6 +570,15 @@
           <li data-ko="30초 프리뷰 즉시 재생"
               data-en="Instant 30-second preview playback">30초 프리뷰 즉시 재생</li>
         </ul>
+        <!-- TODO: placeholder phone mockup — swap for a real FEED screenshot once captured (this week) -->
+        <div class="phone-mockup">
+          <div class="phone-mockup-notch"></div>
+          <div class="phone-mockup-label"
+               data-ko="스크린샷 준비 중"
+               data-en="Screenshot coming soon">
+            스크린샷 준비 중
+          </div>
+        </div>
       </div>
 
       <div class="feature-card">
