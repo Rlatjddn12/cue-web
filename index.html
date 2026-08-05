@@ -257,36 +257,16 @@
       color: #555;
     }
 
-    /* Phone mockup placeholder — swap for real screenshot, see HTML comment */
-    .phone-mockup {
+    .feature-shot {
       margin-top: 24px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 120px;
-      aspect-ratio: 9 / 18;
-      border: 1.5px solid #33322C;
-      border-radius: 20px;
-      background: #0D0C0A;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 10px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
     }
 
-    .phone-mockup-notch {
-      width: 32px;
-      height: 4px;
-      border-radius: 2px;
-      background: #33322C;
-    }
-
-    .phone-mockup-label {
-      font-size: 10px;
-      color: #555;
-      text-align: center;
-      line-height: 1.5;
+    .feature-shot img {
+      width: 100%;
+      display: block;
     }
 
     /* How it works */
@@ -541,6 +521,9 @@
           <li data-ko="공개 또는 맞팔 공개 설정"
               data-en="Share publicly or with mutuals only">공개 또는 맞팔 공개 설정</li>
         </ul>
+        <div class="feature-shot">
+          <img src="/assets/screenshot-drop.jpg" alt="cue. Drop screenshot" width="440" height="901" loading="lazy" />
+        </div>
       </div>
 
       <div class="feature-card">
@@ -570,14 +553,8 @@
           <li data-ko="30초 프리뷰 즉시 재생"
               data-en="Instant 30-second preview playback">30초 프리뷰 즉시 재생</li>
         </ul>
-        <!-- TODO: placeholder phone mockup — swap for a real FEED screenshot once captured (this week) -->
-        <div class="phone-mockup">
-          <div class="phone-mockup-notch"></div>
-          <div class="phone-mockup-label"
-               data-ko="스크린샷 준비 중"
-               data-en="Screenshot coming soon">
-            스크린샷 준비 중
-          </div>
+        <div class="feature-shot">
+          <img src="/assets/screenshot-feed.jpg" alt="cue. feed screenshot" width="440" height="901" loading="lazy" />
         </div>
       </div>
 
@@ -609,6 +586,9 @@
           <li data-ko="장르별 필터"
               data-en="Filter by genre">장르별 필터</li>
         </ul>
+        <div class="feature-shot">
+          <img src="/assets/screenshot-trending.jpg" alt="cue. trending chart screenshot" width="440" height="951" loading="lazy" />
+        </div>
       </div>
 
     </div>
