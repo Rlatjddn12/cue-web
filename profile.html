@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cue.</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -24,11 +24,10 @@
       max-width: 400px;
     }
     .logo {
-      font-size: 32px;
-      font-weight: 400;
-      letter-spacing: -1px;
-      margin-bottom: 32px;
-      font-family: Georgia, serif;
+      display: block;
+      height: 17px;
+      width: auto;
+      margin: 0 auto 32px;
     }
     .icon {
       width: 64px;
@@ -69,7 +68,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="logo">cue.</div>
+    <img class="logo" src="/assets/cue-wordmark-ivory.svg" alt="cue.">
     <div id="content"></div>
   </div>
 
@@ -82,11 +81,27 @@
       desc:       { ko: 'cue.에서 이 프로필을 확인해보세요.', en: 'Check out this profile on cue.' },
       openApp:    { ko: '앱으로 열기',       en: 'Open in cue.' },
       noApp:      { ko: '앱이 없으신가요? 다운로드', en: "Don't have the app? Download" },
+      appStore:   { ko: 'App Store에서 다운로드', en: 'Download on the App Store' },
+      googlePlay: { ko: 'Google Play 다운로드', en: 'Get it on Google Play' },
       notFound:   { ko: '잘못된 링크입니다', en: 'Invalid link' },
       home:       { ko: '홈으로',           en: 'Go home' },
     };
 
     function t(key) { return copy[key][lang]; }
+
+    const APP_STORE_URL = 'https://apps.apple.com/kr/app/cue/id6779252040';
+    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.cueapp.music';
+
+    // iOS (incl. iPadOS reporting as Mac with touch) -> App Store, Android -> Google Play, otherwise both
+    function storeLinks() {
+      const ua = navigator.userAgent;
+      const isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+      const isAndroid = /Android/.test(ua);
+      if (isIOS) return `<a href="${APP_STORE_URL}" class="btn-secondary">${t('noApp')}</a>`;
+      if (isAndroid) return `<a href="${PLAY_STORE_URL}" class="btn-secondary">${t('noApp')}</a>`;
+      return `<a href="${APP_STORE_URL}" class="btn-secondary">${t('appStore')}</a>
+        <a href="${PLAY_STORE_URL}" class="btn-secondary">${t('googlePlay')}</a>`;
+    }
 
     const content = document.getElementById('content');
 
@@ -113,9 +128,7 @@
         <h1>@${username}</h1>
         <p>${t('desc')}</p>
         <a href="${deepLink}" class="btn">${t('openApp')}</a>
-        <a href="https://play.google.com/store/apps/details?id=com.cueapp.music" class="btn-secondary">
-          ${t('noApp')}
-        </a>
+        ${storeLinks()}
       `;
       setTimeout(() => { window.location.href = deepLink; }, 800);
     }
