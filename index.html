@@ -8,8 +8,10 @@
   <meta name="keywords" content="음악 공유, 음악 SNS, 취향 매칭, 플레이리스트 공유, cue" />
   <link rel="canonical" href="https://cue-music.netlify.app" />
   <link rel="preload" as="image" href="/assets/app-icon.png?v=2">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/urbanist-400.woff2" crossorigin>
   <link rel="icon" type="image/png" href="/favicon.png?v=2">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/fonts.css">
   <meta property="og:title" content="cue. — 스트리밍 앱이 달라도, 취향은 같으니까" />
   <meta property="og:description" content="취향 기반 음악 공유 SNS. 좋아하는 곡으로 취향 맞는 사람을 만나보세요." />
   <meta property="og:image" content="https://cue-music.netlify.app/og-image.png?v=2" />
@@ -39,10 +41,12 @@
 
     html { scroll-behavior: smooth; }
 
+    button { font-family: inherit; }
+
     body {
       background: #111010;
       color: #F7F5F0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       min-height: 100vh;
@@ -79,9 +83,9 @@
     }
 
     .tagline-ko {
-      font-family: Georgia, serif;
+      font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif;
       font-size: 22px;
-      font-weight: 400;
+      font-weight: 500;
       color: #F7F5F0;
       margin-bottom: 12px;
       line-height: 1.5;
@@ -118,7 +122,7 @@
       border: 1px solid #F7F5F0;
       background: transparent;
       color: #F7F5F0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif;
       font-size: 14px;
       font-weight: 500;
       text-decoration: none;
@@ -145,7 +149,7 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       align-items: stretch;
       gap: 16px;
     }
@@ -178,9 +182,9 @@
     }
 
     .feature-title {
-      font-family: Georgia, serif;
+      font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif;
       font-size: 18px;
-      font-weight: 400;
+      font-weight: 600;
       color: #F7F5F0;
       margin-bottom: 12px;
       line-height: 1.4;
@@ -240,7 +244,7 @@
     }
 
     .step-number {
-      font-family: Georgia, serif;
+      font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', sans-serif;
       font-size: 48px;
       font-weight: 300;
       color: #333;
@@ -478,10 +482,40 @@
         <ul class="feature-subs">
           <li data-ko="팔로우한 사람들의 최신 음악"
               data-en="Latest music from people you follow">팔로우한 사람들의 최신 음악</li>
+          <li data-ko="곡과 사진을 함께 올려 공유"
+              data-en="Share a song together with photos">곡과 사진을 함께 올려 공유</li>
           <li data-ko="취향 기반 맞춤 추천"
               data-en="Personalized taste-based recommendations">취향 기반 맞춤 추천</li>
           <li data-ko="30초 프리뷰 즉시 재생"
               data-en="Instant 30-second preview playback">30초 프리뷰 즉시 재생</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#F7F5F0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="14" r="9.5" />
+            <path d="M21 21 L28 28" />
+          </svg>
+        </div>
+        <div class="feature-label">EXPLORE</div>
+        <div class="feature-title"
+             data-ko="음악, 앨범, 아티스트, 사람까지"
+             data-en="Music, albums, artists, people">
+          음악, 앨범, 아티스트, 사람까지
+        </div>
+        <div class="feature-desc"
+             data-ko="내 취향에서 출발해 새로운 음악과 사람을 찾아보세요."
+             data-en="Start from your own taste and find new music and new people.">
+          내 취향에서 출발해 새로운 음악과 사람을 찾아보세요.
+        </div>
+        <ul class="feature-subs">
+          <li data-ko="아티스트와 앨범을 목록으로 한눈에"
+              data-en="Browse artists and albums as a list">아티스트와 앨범을 목록으로 한눈에</li>
+          <li data-ko="아티스트·앨범 소개는 위키백과 요약으로"
+              data-en="Artist and album info from Wikipedia summaries">아티스트·앨범 소개는 위키백과 요약으로</li>
+          <li data-ko="플레이리스트와 유저도 함께 탐색"
+              data-en="Playlists and users too">플레이리스트와 유저도 함께 탐색</li>
         </ul>
       </div>
 
@@ -501,17 +535,17 @@
           지금 뜨는 음악
         </div>
         <div class="feature-desc"
-             data-ko="글로벌 차트를 한눈에."
-             data-en="Global charts at a glance.">
-          글로벌 차트를 한눈에.
+             data-ko="지금 많이 듣는 음악을 한눈에."
+             data-en="What everyone is listening to, at a glance.">
+          지금 많이 듣는 음악을 한눈에.
         </div>
         <ul class="feature-subs">
           <li data-ko="Billboard Hot 100"
               data-en="Billboard Hot 100">Billboard Hot 100</li>
-          <li data-ko="Apple Music 인기 차트 (한국/글로벌)"
-              data-en="Apple Music Charts (Korea/Global)">Apple Music 인기 차트 (한국/글로벌)</li>
-          <li data-ko="장르별 필터"
-              data-en="Filter by genre">장르별 필터</li>
+          <li data-ko="Apple Music 인기 차트"
+              data-en="Apple Music charts">Apple Music 인기 차트</li>
+          <li data-ko="한국 · 글로벌 차트 전환"
+              data-en="Switch between Korea and Global">한국 · 글로벌 차트 전환</li>
         </ul>
       </div>
 
@@ -622,14 +656,27 @@
 
       <div class="faq-item">
         <div class="faq-question"
-             data-ko="iOS에서도 사용할 수 있나요?"
-             data-en="Is cue. available on iOS?">
-          iOS에서도 사용할 수 있나요?
+             data-ko="Drop은 무엇인가요?"
+             data-en="What is a Drop?">
+          Drop은 무엇인가요?
         </div>
         <div class="faq-answer"
-             data-ko="네, App Store에서 바로 다운로드할 수 있습니다."
-             data-en="Yes, you can download it directly from the App Store.">
-          네, App Store에서 바로 다운로드할 수 있습니다.
+             data-ko="오늘의 곡과 감정을 남기는 24시간짜리 음악 기록입니다. 24시간이 지나면 자동으로 삭제되고, 전체 공개 또는 맞팔로만 공개할 수 있습니다."
+             data-en="A Drop is a 24-hour music moment for the song and mood of the day. It is deleted automatically after 24 hours, and you can share it publicly or with mutual followers only.">
+          오늘의 곡과 감정을 남기는 24시간짜리 음악 기록입니다. 24시간이 지나면 자동으로 삭제되고, 전체 공개 또는 맞팔로만 공개할 수 있습니다.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question"
+             data-ko="iOS와 Android에서 모두 사용할 수 있나요?"
+             data-en="Is cue. available on both iOS and Android?">
+          iOS와 Android에서 모두 사용할 수 있나요?
+        </div>
+        <div class="faq-answer"
+             data-ko="네, App Store와 Google Play에서 바로 다운로드할 수 있습니다."
+             data-en="Yes, you can download it from the App Store and Google Play.">
+          네, App Store와 Google Play에서 바로 다운로드할 수 있습니다.
         </div>
       </div>
 
