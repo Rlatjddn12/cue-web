@@ -1,11 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.cueapp.music",
       "sha256_cert_fingerprints": [
-        "C9:AF:8D:35:D4:7B:AE:1C:01:25:98:C8:7A:BC:B5:D7:0D:69:5B:F3:08:2F:63:E9:E1:D0:34:70:79:E7:2B:94"
+        "C9:AF:8D:35:D4:7B:AE:1C:01:25:98:C8:7A:BC:B5:D7:0D:69:5B:F3:08:2F:63:E9:E1:D0:34:70:79:E7:2B:94",
+        "A3:36:54:8B:56:24:94:60:24:CC:22:BE:F4:A5:0C:66:F1:2E:09:A5:51:86:A7:90:62:94:22:2C:49:8B:9F:E8"
       ]
     }
   }
