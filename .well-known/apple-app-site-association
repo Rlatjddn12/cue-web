@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["T7XTVW85G2.com.cueapp.music"],
+        "components": [
+          { "/": "/post/*" },
+          { "/": "/profile/*" },
+          { "/": "/track/*" },
+          { "/": "/invite/*" }
+        ]
+      }
+    ]
+  }
+}
